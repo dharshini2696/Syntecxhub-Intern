@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .total-card {
+            background: #4f46e5;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .total-card h2 {
+            margin-bottom: 10px;
+        }
+        .total-card p {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        input,
+        select {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+        #title {
+            flex: 2;
+        }
+
+        #amount {
+            flex: 1;
+        }
+
+        #category {
+            flex: 1;
+        }
+        button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 7px;
+            background: #4f46e5;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        button:hover {
+            background: #3730a3;
+        }
+
+        .filter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .expense {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .expense h3 {
+            margin-bottom: 7px;
+            color: #333;
+        }
+        .category {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 13px;
+        }
+        .amount {
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .delete-btn {
+            background: #ef4444;
+        }
+        .delete-btn:hover {
+            background: #dc2626;
+        }
+        .empty {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+        @media (max-width: 700px) {
+            .form-group {
+                flex-direction: column;
+            }
+            input,
+            select,
+            #title,
+            #amount,
+            #category {
+                width: 100%;
+            }
+            .expense {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .expense-right {
+                width: 100%;
+            }
+            .delete-btn {
+                float: right;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Expense Tracker</h1>
+        <p class="subtitle">
+            Track and manage your daily expenses
+        </p>
+        <!-- Total Expense -->
+        <div class="total-card">
+            <h2>Total Expenses</h2>
+            <p id="totalAmount">₹0</p>
+        </div>
+        <!-- Add Expense -->
+        <div class="card">
+            <h2>Add New Expense</h2>
+            <div class="form-group">
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="Expense Title"
+                >
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount"
+                >
+                <select id="category">
+                    <option value="Food">Food</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Other">Other</option>
+                </select>
+                <button onclick="addExpense()">
+                    Add Expense
+                </button>
+            </div>
+        </div>
+        <!-- Filter -->
+        <div class="card">
+            <div class="filter">
+                <label>
+                    <b>Filter by Category:</b>
+                </label>
+                <select
+                    id="filter"
+                    onchange="displayExpenses()"
+                >
+                    <option value="All">All</option>
+                    <option value="Food">Food</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+        </div>
+        <!-- Expense List -->
+        <div class="card">
+            <h2>Expense List</h2>
+            <div id="expenseList">
+                <p class="empty">
+                    No expenses added yet.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Expense array
+        let expenses = [];
+        // Add Expense Function
+        function addExpense() {
+            let title =
+                document.getElementById("title").value;
+            let amount =
+                document.getElementById("amount").value;
+            let category =
+                document.getElementById("category").value;
+            // Check empty fields
+            if (title === "" || amount === "") {
+                alert("Please enter expense title and amount.");
+                return;
+            }
+            // Create expense object
+            let expense = {
+                title: title,
+                amount: Number(amount),
+                category: category
+            };
+            // Add expense to array
+            expenses.push(expense);
+            // Clear input fields
+            document.getElementById("title").value = "";
+            document.getElementById("amount").value = "";
+            // Display expenses
+            displayExpenses();
+        }
+        // Display Expense Function
+        function displayExpenses() {
+            let expenseList =
+                document.getElementById("expenseList");
+            let filter =
+                document.getElementById("filter").value;
+            // Clear old list
+            expenseList.innerHTML = "";
+            // Filter expenses
+            let filteredExpenses = expenses.filter(
+                function(expense) {
+                    if (filter === "All") {
+                        return true;
+                    }
+                    return expense.category === filter;
+                }
+            );
+
+            // If no expense
+            if (filteredExpenses.length === 0) {
+                expenseList.innerHTML =
+                    '<p class="empty">No expenses found.</p>';
+
+            }
+            // Display each expense
+            filteredExpenses.forEach(
+                function(expense) {
+                    let div =
+                        document.createElement("div");
+                    div.className = "expense";
+                    div.innerHTML = `
+                        <div>
+                            <h3>
+                                ${expense.title}
+                            </h3>
+                            <span class="category">
+                                ${expense.category}
+                            </span>
+                        </div>
+                        <div class="expense-right">
+                            <span class="amount">
+                                ₹${expense.amount}
+                            </span>
+                            <button
+                                class="delete-btn"
+                                onclick="deleteExpense('${expense.title}')"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    `;
+                    expenseList.appendChild(div);
+                }
+            );
+            // Calculate total
+            calculateTotal();
+        }
+        // Delete Expense Function
+        function deleteExpense(title) {
+            expenses = expenses.filter(
+                function(expense) {
+                    return expense.title !== title;
+                }
+            );
+            displayExpenses();
+        }
+        // Calculate Total Function
+        function calculateTotal() {
+            let total = 0;
+            expenses.forEach(
+                function(expense) {
+                    total =
+                        total + expense.amount;
+                }
+            );
+            document.getElementById("totalAmount").innerText =
+                "₹" + total;
+        }
+    </script>
+</body>
+</html>
