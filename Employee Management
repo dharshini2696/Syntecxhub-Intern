@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management System</title>
+</head>
+<body>
+    <!-- Header -->
+    <center>
+        <h1>EMPLOYEE MANAGEMENT SYSTEM</h1>
+        <hr>
+        <a href="#home">Home</a> |
+        <a href="#register">Employee Registration</a> |
+        <a href="#employees">Employee Details</a> |
+        <a href="#attendance">Attendance</a> |
+        <a href="#leave">Leave Management</a> |
+        <a href="#salary">Salary Details</a> |
+        <a href="#contact">Contact</a>
+        <hr>
+    </center>
+    <!-- Home -->
+    <section id="home">
+        <center>
+            <h2>Welcome to Employee Management System</h2>
+            <p>
+                This system is designed to manage employee information,
+                attendance, leave and salary details in an organized way.
+            </p>
+        </center>
+    </section>
+    <hr>
+    <!-- Employee Registration -->
+    <section id="register">
+        <center>
+            <h2>Employee Registration</h2>
+            <form>
+                <table cellpadding="8">
+                    <tr>
+                        <td>Employee ID:</td>
+                        <td>
+                            <input type="text" name="employee_id" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Employee Name:</td>
+                        <td>
+                            <input type="text" name="employee_name" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Date of Birth:</td>
+                        <td>
+                            <input type="date" name="dob">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Gender:</td>
+                        <td>
+                            <input type="radio" name="gender" value="Male">
+                            Male
+                            <input type="radio" name="gender" value="Female">
+                            Female
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td>
+                            <input type="email" name="email" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td>
+                            <input type="tel" name="phone">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Department:</td>
+                        <td>
+                            <select name="department">
+                                <option>Select Department</option>
+                                <option>HR</option>
+                                <option>IT</option>
+                                <option>Finance</option>
+                                <option>Marketing</option>
+                                <option>Sales</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Designation:</td>
+                        <td>
+                            <input type="text" name="designation">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Joining Date:</td>
+                        <td>
+                            <input type="date" name="joining_date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Salary:</td>
+                        <td>
+                            <input type="number" name="salary">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td>
+                        <td>
+                            <textarea name="address" rows="4" cols="30"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input type="submit" value="Register">
+                            <input type="reset" value="Clear">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </center>
+    </section>
+    <hr>
+    <!-- Employee Details -->
+    <section id="employees">
+        <center>
+            <h2>Employee Details</h2>
+            <table border="1" cellpadding="10">
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+                <tr>
+                    <td>EMP001</td>
+                    <td>Arun Kumar</td>
+                    <td>IT</td>
+                    <td>Software Developer</td>
+                    <td>arun@gmail.com</td>
+                    <td>9876543210</td>
+                </tr>
+                <tr>
+                    <td>EMP002</td>
+                    <td>Priya</td>
+                    <td>HR</td>
+                    <td>HR Executive</td>
+                    <td>priya@gmail.com</td>
+                    <td>9876543211</td>
+                </tr>
+                <tr>
+                    <td>EMP003</td>
+                    <td>Rahul</td>
+                    <td>Finance</td>
+                    <td>Accountant</td>
+                    <td>rahul@gmail.com</td>
+                    <td>9876543212</td>
+                </tr>
+            </table>
+        </center>
+    </section>
+    <hr>
+    <!-- Attendance -->
+    <section id="attendance">
+        <center>
+            <h2>Employee Attendance</h2>
+            <table border="1" cellpadding="10">
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>EMP001</td>
+                    <td>Arun Kumar</td>
+                    <td>26-09-2026</td>
+                    <td>Present</td>
+                </tr>
+                <tr>
+                    <td>EMP002</td>
+                    <td>Priya</td>
+                    <td>26-09-2026</td>
+                    <td>Present</td>
+                </tr>
+                <tr>
+                    <td>EMP003</td>
+                    <td>Rahul</td>
+                    <td>26-09-2026</td>
+                    <td>Absent</td>
+                </tr>
+            </table>
+        </center>
+    </section>
+    <hr>
+    <!-- Leave Management -->
+    <section id="leave">
+        <center>
+            <h2>Leave Management</h2>
+            <form>
+                <table cellpadding="8">
+                    <tr>
+                        <td>Employee ID:</td>
+                        <td>
+                            <input type="text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Employee Name:</td>
+                        <td>
+                            <input type="text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Leave Type:</td>
+                        <td>
+                            <select>
+                                <option>Casual Leave</option>
+                                <option>Sick Leave</option>
+                                <option>Emergency Leave</option>
+                                <option>Earned Leave</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>From Date:</td>
+                        <td>
+                            <input type="date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>To Date:</td>
+                        <td>
+                            <input type="date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Reason:</td>
+                        <td>
+                            <textarea rows="4" cols="30"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input type="submit" value="Apply Leave">
+                            <input type="reset" value="Clear">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </center>
+    </section>
+    <hr>
+    <!-- Salary Details -->
+    <section id="salary">
+        <center>
+            <h2>Salary Details</h2>
+            <table border="1" cellpadding="10">
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Department</th>
+                    <th>Basic Salary</th>
+                    <th>Allowance</th>
+                    <th>Total Salary</th>
+                </tr>
+                <tr>
+                    <td>EMP001</td>
+                    <td>Arun Kumar</td>
+                    <td>IT</td>
+                    <td>30000</td>
+                    <td>5000</td>
+                    <td>35000</td>
+                </tr>
+                <tr>
+                    <td>EMP002</td>
+                    <td>Priya</td>
+                    <td>HR</td>
+                    <td>28000</td>
+                    <td>4000</td>
+                    <td>32000</td>
+                </tr>
+                <tr>
+                    <td>EMP003</td>
+                    <td>Rahul</td>
+                    <td>Finance</td>
+                    <td>25000</td>
+                    <td>3000</td>
+                    <td>28000</td>
+                </tr>
+            </table>
+        </center>
+    </section>
+    <hr>
+    <!-- Contact -->
+    <section id="contact">
+        <center>
+            <h2>Contact Us</h2>
+            <p><b>Employee Management System</b></p>
+            <p>Email: employee@gmail.com</p>
+            <p>Phone: +91 9876543210</p>
+            <p>Address: Coimbatore, Tamil Nadu</p>
+        </center>
+    </section>
+    <hr>
+    <!-- Footer -->
+    <center>
+        <p>
+            &copy; 2026 Employee Management System. All Rights Reserved.
+        </p>
+    </center>
+</body>
+</html>
+
+
+
+
+
+
+
+
